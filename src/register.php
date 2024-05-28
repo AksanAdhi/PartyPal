@@ -3,7 +3,7 @@ $servername =  "localhost";
 $username = "root";
 $password = "";
 $dbname = "partypal."; // Ganti dengan nama database Anda
-$test;
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
