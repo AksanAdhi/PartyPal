@@ -3,28 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>Homepage</title>
     <link rel="stylesheet" href="./output.css" />
+    <link rel="stylesheet" href="home.css" />
   </head>
   <body>
     <header class="bg-primary">
       <nav class="flex items-center justify-between container mx-auto py-4">
-        <a
-          class="flex items-center text-white gap-x-2 font-bold text-2xl"
-          href="#"
-        >
+        <a class="flex items-center text-white gap-x-2 font-bold text-2xl" href="#">
           <img class="w-16" src="./asset/logo pp 1.png" alt="" />
           PartyPal
         </a>
 
-        <div class="relative max-w-3xl w-full">
-          <div
-            class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-3.5"
-          >
+        <div class="relative w-full max-w-sm">
+          <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-3.5">
             <svg
               class="flex-shrink-0 size-4 text-gray-400 dark:text-white/60"
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
+              width="20"
               height="24"
               viewBox="0 0 24 24"
               fill="none"
@@ -40,7 +36,7 @@
 
           <div>
             <input
-              class="py-3 ps-10 pe block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+              class="py-3 ps-10 pe block w-full max-w-lg border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
               type="text"
               placeholder="Type a product name"
               value=""
@@ -50,18 +46,7 @@
         </div>
 
         <div class="flex gap-x-5">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="icon icon-tabler icon-tabler-shopping-cart"
-            width="52"
-            height="52"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="#fff"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="40" height="40" viewBox="0 0 25 25" stroke-width="1.5" stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
             <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
@@ -72,9 +57,9 @@
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="icon icon-tabler icon-tabler-user-square-rounded"
-            width="52"
-            height="52"
-            viewBox="0 0 24 24"
+            width="40"
+            height="40"
+            viewBox="0 0 25 25"
             stroke-width="1.5"
             stroke="#fff"
             fill="none"
@@ -83,16 +68,12 @@
           >
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M12 13a3 3 0 1 0 0 -6a3 3 0 0 0 0 6z" />
-            <path
-              d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"
-            />
+            <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
             <path d="M6 20.05v-.05a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v.05" />
           </svg>
         </div>
       </nav>
-      <div
-        class="flex justify-center bg-white gap-x-16 py-3 text-primary text-lg"
-      >
+      <div class="flex justify-center bg-white gap-x-16 py-3 text-primary text-lg">
         <a class="py-3" href="#">Home</a>
         <a class="py-3" href="#">Product</a>
         <a class="py-3" href="#">History</a>
@@ -100,42 +81,48 @@
     </header>
 
     <section class="flex relative">
-      <h1
-        class="absolute top-96 left-1/2 -translate-x-1/2 -translate-y-1/2 text-7xl text-white font-bold italic"
-      >
-        WELCOME TO PARTYPAL
-      </h1>
-      <div
-        class="w-1/2 h-svh bg-no-repeat bg-cover"
-        style="
-          background-image: url(./asset/pr-boc-20221006-006-2-1702394808i8c0N_640x730.jpg.png);
-        "
-      ></div>
-      <div
-        class="w-1/2 bg-no-repeat bg-cover"
-        style="
-          background-image: url(./asset/pr-boc-20230324-096-1-1702453833omH56_640x730.jpg.png);
-        "
-      ></div>
+      <div class="w-1/2 h-svh bg-no-repeat bg-cover" style="background-image: url(./asset/pr-boc-20221006-006-2-1702394808i8c0N_640x730.jpg.png)"></div>
+      <div class="w-1/2 bg-no-repeat bg-cover" style="background-image: url(./asset/pr-boc-20230324-096-1-1702453833omH56_640x730.jpg.png)"></div>
+      <div class="absolute top-96 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl text-white font-bold italic" style="text-align: center">
+        <h3 style="font-size: larger">WELCOME TO PARTYPAL</h3>
+        <br />
+        <button class="outline outline-4 outline-white" style="background-color: #c72056; text-align: center; height: 50px; width: 220px">MORE</button>
+      </div>
     </section>
 
-    <section
-      class="min-h-screen flex items-center justify-center flex-col gap-y-20"
-    >
-      <div>
-        <button
-          class="py-12 px-8 w-96 rounded-xl bg-primary text-white text-7xl font-bold"
-        >
-          Tambah
-        </button>
-      </div>
+    <section style="background-color: #c72056">
+      <div class="containers">
+        <header class="header">
+          <h1 style="font-size: 50px; color: white; margin-left: 20px; font-weight: bold">Produk Sewa Rekomendasi</h1>
+        </header>
+        <div class="containers">
+          <div class="image-container">
+            <img src="image/kursi.png" alt="Kursi" />
+            <div class="image-description">
+              <br />
+              <h2 class="image-name">Kursi</h2>
+              <p class="image-price">Start From Rp.20.000/Hari</p>
+            </div>
+          </div>
 
-      <div>
-        <button
-          class="py-12 px-8 w-96 rounded-xl bg-primary text-white text-7xl font-bold"
-        >
-          Verifikasi
-        </button>
+          <div class="image-container">
+            <img src="image/alat masak.png" alt="alat masak" />
+            <div class="image-description">
+              <br />
+              <h2 class="image-name">Paket Alat Masak</h2>
+              <p class="image-price">Start From Rp.50.000/Hari</p>
+            </div>
+          </div>
+
+          <div class="image-container">
+            <img src="image/tenda.png" alt="Kursi Bar" />
+            <div class="image-description">
+              <br />
+              <h2 class="image-name">Tenda</h2>
+              <p class="image-price">Start From Rp.90.000/Hari</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -144,18 +131,11 @@
         <div>
           <h1 class="text-white text-3xl font-bold">PartyPal</h1>
 
-          <p class="mt-5 text-white max-w-xs leading-10 font-light">
-            Jl. Prof. Dr. Sumantri Brojonegoro No. 1 Bandar Lampung, Lampung,
-            35145.
-          </p>
+          <p class="mt-5 text-white max-w-xs leading-10 font-light">Jl. Prof. Dr. Sumantri Brojonegoro No. 1 Bandar Lampung, Lampung, 35145.</p>
 
-          <div class="flex text-white items-center gap-x-3 mt-4">
-            <img src="./asset/phone.svg" alt="" /> +6280099442214
-          </div>
+          <div class="flex text-white items-center gap-x-3 mt-4"><img src="./asset/phone.svg" alt="" /> +6280099442214</div>
 
-          <div class="flex text-white items-center gap-x-3 mt-4">
-            <img src="./asset/mail.svg" alt="" /> partypal@gmail.com
-          </div>
+          <div class="flex text-white items-center gap-x-3 mt-4"><img src="./asset/mail.svg" alt="" /> partypal@gmail.com</div>
 
           <h3 class="mt-8 text-xl font-bold text-white">Follow Us</h3>
           <div class="flex gap-x-3 mt-3">
@@ -175,19 +155,13 @@
         <div class="mx-auto">
           <h1 class="text-lg font-bold text-white">Pembayaran</h1>
           <div class="grid grid-cols-3 gap-3 mt-8">
-            <div
-              class="bg-white px-2 py-2 rounded-lg flex items-center justify-center"
-            >
+            <div class="bg-white px-2 py-2 rounded-lg flex items-center justify-center">
               <img class="h-8" src="./asset/bank/bni.png" alt="" />
             </div>
-            <div
-              class="px-2 py-2 rounded-lg bg-white flex items-center justify-center"
-            >
+            <div class="px-2 py-2 rounded-lg bg-white flex items-center justify-center">
               <img class="h-8" src="./asset/bank/bca 1.png" alt="" />
             </div>
-            <div
-              class="px-2 py-2 rounded-lg bg-white flex items-center justify-center"
-            >
+            <div class="px-2 py-2 rounded-lg bg-white flex items-center justify-center">
               <img class="h-8" src="./asset/bank/bri 1.png" alt="" />
             </div>
             <div class="px-2 py-2 rounded-lg bg-white">
@@ -197,27 +171,18 @@
             <div class="px-2 py-2 rounded-lg bg-white">
               <img src="./asset/bank/seabank 1.png" alt="" />
             </div>
-            <div
-              class="px-2 py-2 rounded-lg bg-white flex items-center justify-center"
-            >
+            <div class="px-2 py-2 rounded-lg bg-white flex items-center justify-center">
               <img src="./asset/bank/gopay-logo-new 1 (1).png" alt="" />
             </div>
 
             <div class="px-2 py-1 rounded-lg bg-white">
-              <img
-                class="w-20 mx-auto"
-                src="./asset/bank/Logo-ShopeePay-768x403 1.png"
-                alt=""
-              />
+              <img class="w-20 mx-auto" src="./asset/bank/Logo-ShopeePay-768x403 1.png" alt="" />
             </div>
           </div>
         </div>
       </div>
     </footer>
 
-    <script
-      src="https://kit.fontawesome.com/c4ce7ec2a0.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/c4ce7ec2a0.js" crossorigin="anonymous"></script>
   </body>
 </html>
