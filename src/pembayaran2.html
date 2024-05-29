@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pembayaran</title>
+    <link rel="stylesheet" href="./output.css" />
+    <link rel="stylesheet" href="home.css" />
+    <style>
+    /* body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+} */
+
+.containers{
+    width: 1050px;
+    height: 700px;
+    margin: 20px;
+    margin-left: 130px;
+    max-width: 5000px;
+    background-color: #fff;
+    border: 2px solid #d6336c;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    text-align: center;
+    color: #d6336c;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.payment-details {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #fff;
+    margin-bottom: 15px;
+    width: 1000px;
+}
+
+.total-payment, .payment-timer {
+    margin-bottom: 15px;
+}
+
+.total-payment p, .payment-timer p {
+    margin: 0;
+    color: #333;
+}
+
+.amount {
+    color: #d6336c;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.timer {
+    color: #d6336c;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.due-date {
+    color: #555;
+    font-size: 14px;
+}
+
+.bank-details {
+    /* display: block; */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #f9ecee;
+    margin-bottom: 15px;
+    /* text-align: center; */
+    width: 1000px;
+    display: flex;
+    align-items: center;
+}
+
+.bank-logo {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.account-details p {
+    margin: 0;
+    color: #333;
+}
+
+.account-number {
+    color: #d6336c;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.copy-button {
+    margin-top: 10px;
+    color: rgb(87, 85, 85);
+    padding: 5px 10px;
+    font-style: italic;
+    cursor: pointer;
+    text-align: right;
+}
+
+.copy-button:hover {
+    background-color: #b02958;
+    text-align: right;
+}
+
+.transfer-instructions {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #fff;
+}
+
+.transfer-instructions h2 {
+    color: #d6336c;
+    margin-top: 0;
+}
+
+.transfer-instructions ol {
+    padding-left: 20px;
+}
+
+.transfer-instructions li {
+    margin-bottom: 10px;
+    color: #333;
+}
+.button{
+    margin-top: 10px;
+    color: white;
+    padding: 5px 10px;
+    font-style: italic;
+    cursor: pointer;
+    text-align: right;
+    width: 580px;
+}
+
+</style>
+</head>
+<body>
+  <header class="bg-primary">
+    <nav class="flex items-center justify-between container mx-auto py-4">
+      <a class="flex items-center text-white gap-x-2 font-bold text-2xl" href="#">
+        <img class="w-16" src="./asset/logo pp 1.png" alt="" />
+        PartyPal
+      </a>
+
+      <div class="relative w-full max-w-sm">
+        <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-3.5">
+          <svg
+            class="flex-shrink-0 size-4 text-gray-400 dark:text-white/60"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+        </div>
+
+        <div>
+          <input
+            class="py-3 ps-10 pe block w-full max-w-lg border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+            type="text"
+            placeholder="Type a product name"
+            value=""
+            data-hs-combo-box-input=""
+          />
+        </div>
+      </div>
+
+      <div class="flex gap-x-5">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="40" height="40" viewBox="0 0 25 25" stroke-width="1.5" stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+          <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+          <path d="M17 17h-11v-14h-2" />
+          <path d="M6 5l14 1l-1 7h-13" />
+        </svg>
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-user-square-rounded"
+          width="40"
+          height="40"
+          viewBox="0 0 25 25"
+          stroke-width="1.5"
+          stroke="#fff"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M12 13a3 3 0 1 0 0 -6a3 3 0 0 0 0 6z" />
+          <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+          <path d="M6 20.05v-.05a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v.05" />
+        </svg>
+      </div>
+    </nav>
+    <div class="flex justify-center bg-white gap-x-16 py-3 text-primary text-lg">
+      <a class="py-3" href="home.html">Home</a>
+      <a class="py-3" href="produk.html">Product</a>
+      <a class="py-3" href="#">History</a>
+    </div>
+  </header>
+  <h1 class="title">PEMBAYARAN</h1>
+  <div class="containers">
+    <div class="payment-details">
+        <div class="total-payment">
+            <p style="color: #d6336c;"><strong>TOTAL PEMBAYARAN</strong></p>
+            <p class="amount" style="text-align: right; color: #d6336c;">RP180.000</p>
+        </div>
+        <div class="payment-timer">
+            <p style="color: #d6336c;"><strong>BAYAR DALAM</strong></p>
+            <p class="timer" style="text-align: right; color: #d6336c;">23 JAM 59 MENIT 3 DETIK</p>
+            <p class="due-date" style="text-align: right; color: #8b8b8b;"><i>Jatuh tempo pada 9 Mei 2024, 11:30</i></p>
+        </div>
+    </div>
+    <div class="bank-details">
+        <img style="margin: 20px;" class="h-8" src="./asset/bank/bni.png" >
+        <div class="account-details">
+            <p>Bank BNI</p>
+            <p>No.Rek/Virtual Account</p>
+            <p class="account-number">008 0812 4567 9077</p>
+        </div>
+        <button class="button"></button>
+        <button style="color: #8b8b8b;" ><i>Salin</i></button>
+    </div>
+    <div class="transfer-instructions">
+        <h2>Petunjuk Transfer</h2>
+        <ol>
+            <li>Pilih m-Transfer > BNI Virtual Account</li>
+            <li>Masukkan nomor Virtual Account 008 081245679077 dan pilih send</li>
+            <li>Periksa informasi yang tertera di layar. Pastikan Merchant adalah Shopee, Total tagihan sudah benar dan username. Jika benar pilih YA.</li>
+            <li>Masukkan pin m-BNI anda dan pilih OK.</li>
+            <li>Jika muncul notifikasi “Transaksi Gagal. Nominal melebihi limit harian”, Mohon ulangi transaksi kembali.</li>
+        </ol>
+    </div>
+</div>
+</div>
+</body>
+</html>
