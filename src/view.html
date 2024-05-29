@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lihat Produk</title>
+    <link rel="stylesheet" href="./output.css" />
+    <link rel="stylesheet" href="home.css" />
+    <style>
+        .containerr {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            width: 100%;
+            margin-left: 150px;
+            margin-bottom: 20px;
+        }
+        .product-image {
+            float: left;
+            width: 40%;
+            margin-right: 20px;
+        }
+        .product-image img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .product-details {
+            float: left;
+            width: 55%;
+        }
+        .product-details h2 {
+            margin-top: 0;
+            font-size: 22px;
+        }
+        .product-details .price {
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+            text-align: right;
+        }
+        .product-details .total-price {
+            font-size: 16px;
+            color: #333;
+            margin-top: 20px;
+        }
+        .product-details .btn {
+            display: inline-block;
+            background-color: #d6336c;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: right;
+        }
+        .product-price{
+          font-size: 12px;
+            color: rgba(78, 78, 78, 0.767);
+            font-style: italic;
+            text-align: right;
+            margin-right: 10px;
+        }
+        .caption{
+          font-size: 16px;
+            color: rgba(78, 78, 78, 0.767);
+            margin-top: 20px;
+            font-style: normal;
+        }
+        .info-box {
+            clear: both;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .info-box div {
+            text-align: center;
+        }
+        .info-box img {
+            max-width: 50px;
+            margin-bottom: 10px;
+        }
+        .product-location{
+            display: flex;
+            align-items: center;
+            color: black;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .rental-section {
+            display: flex;
+            align-items: center;
+        }
+        .rental-button {
+            color: #fff;
+            border: 1px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+            width: 150px;
+            height: 35px;
+            padding-left:20px ;
+        }
+    </style>
+  </head>
+  <body>
+    <header class="bg-primary">
+      <nav class="flex items-center justify-between container mx-auto py-4">
+        <a class="flex items-center text-white gap-x-2 font-bold text-2xl" href="#">
+          <img class="w-16" src="./asset/logo pp 1.png" alt="" />
+          PartyPal
+        </a>
+
+        <div class="relative w-full max-w-sm">
+          <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-3.5">
+            <svg
+              class="flex-shrink-0 size-4 text-gray-400 dark:text-white/60"
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </svg>
+          </div>
+
+          <div>
+            <input
+              class="py-3 ps-10 pe block w-full max-w-lg border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+              type="text"
+              placeholder="Type a product name"
+              value=""
+              data-hs-combo-box-input=""
+            />
+          </div>
+        </div>
+
+        <div class="flex gap-x-5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="40" height="40" viewBox="0 0 25 25" stroke-width="1.5" stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+            <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+            <path d="M17 17h-11v-14h-2" />
+            <path d="M6 5l14 1l-1 7h-13" />
+          </svg>
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-user-square-rounded"
+            width="40"
+            height="40"
+            viewBox="0 0 25 25"
+            stroke-width="1.5"
+            stroke="#fff"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M12 13a3 3 0 1 0 0 -6a3 3 0 0 0 0 6z" />
+            <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+            <path d="M6 20.05v-.05a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v.05" />
+          </svg>
+        </div>
+      </nav>
+      <div class="flex justify-center bg-white gap-x-16 py-3 text-primary text-lg">
+        <a class="py-3" href="home.html">Home</a>
+        <a class="py-3" href="produk.html">Product</a>
+        <a class="py-3" href="#">History</a>
+      </div>
+    </header>
+    <div class="containerr">
+        <div class="product-image">
+            <img style="margin-left: 50px;" src="image/kursi.png" alt="Kursi Futura Standar">
+        </div>
+        <div class="product-details">
+            <h2><strong>Kursi Futura Standar</strong></h2><br>
+            <p><i>Kategori: Kursi</i></p>
+            <p><div class="rental-section">
+              <div class="product-location">
+              <img src="image/Vector.png" alt="Location Icon" width="20">Bandar Lampung
+              </div>
+              <button class="rental-button"></button>
+              <div class="product-location">
+                <img src="image/Frame.png" alt="Location Icon" width="20">Penyewaan Jaya Sejahtera
+              </div>
+            </div>
+          </p>
+          <div class="rental-section">
+            <div><i>Harga: </i></div>
+            <button class="rental-button">
+          </button><button class="rental-button">
+          </button>
+          <div class="price">Rp. 5.000,00 / hari</div>
+          </div>
+          <div class="product-price">Minimal Pemesanan: 50 unit/hari</div>
+            <div class="caption"><p>Kursi Kayu Elegan dengan Kenyamanan Luar Biasa! Didesain dengan detail yang memikat. Alas duduk empuk yang lembut memastikan kenyamanan Anda sepanjang acara. Dari pernikahan hingga seminar, kursi ini cocok untuk segala acara istimewa Anda.</p></div>
+            <br>
+            <div style="color: #333;"><i>Jumlah pesanan: 2 unit</i></div>
+            <div class="rental-section">
+              <div class="product-location">
+                <div class="total-price">Total Harga: </div>
+              </div>
+              <button class="rental-button"></button><button class="rental-button"></button>
+              <div class="product-location">
+                <div class="total-price"><strong>Rp. 250.000,00</strong></div>
+              </div>
+            </div>
+            <a href="#" class="btn" style="margin-bottom: 20px;">Sewa Produk</a>
+        </div>
+        <br><br>
+        <div class="info-box">
+            <div>
+              <div class="rental-section">
+                <div class="product-location">
+                <img src="image/delivery.png.png" alt="Location Icon" width="50" style="margin: 5px;">Gratis Ongkos Kirim<br>Untuk area Bandar Lampung<br> dan Sekitarnya
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="rental-section">
+                <div class="product-location">
+                <img src="image/thumbs-up.png.png" alt="Location Icon" width="50" style="margin: 5px;">Jaminan Kepuasan<br>Memberikan kualitas dan layanan yang terbaik
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="rental-section">
+                <div class="product-location">
+                <img src="image/responds.png.png" alt="Location Icon" width="50" style="margin: 5px;">Layanan 24/7<br>melayani selama 24 jam
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-primary py-8 pb-4">
+        <div class="grid grid-cols-3 container mx-auto">
+          <div>
+            <h1 class="text-white text-3xl font-bold">PartyPal</h1>
+  
+            <p class="mt-5 text-white max-w-xs leading-10 font-light">Jl. Prof. Dr. Sumantri Brojonegoro No. 1 Bandar Lampung, Lampung, 35145.</p>
+  
+            <div class="flex text-white items-center gap-x-3 mt-4"><img src="./asset/phone.svg" alt="" /> +6280099442214</div>
+  
+            <div class="flex text-white items-center gap-x-3 mt-4"><img src="./asset/mail.svg" alt="" /> partypal@gmail.com</div>
+  
+            <h3 class="mt-8 text-xl font-bold text-white">Follow Us</h3>
+            <div class="flex gap-x-3 mt-3">
+              <i class="fa-brands fa-instagram text-3xl text-white"></i>
+              <i class="fa-brands fa-facebook text-3xl text-white"></i>
+              <i class="fa-brands fa-x-twitter text-3xl text-white"></i>
+            </div>
+          </div>
+  
+          <div class="mx-auto">
+            <h1 class="text-lg font-bold text-white">Informasi</h1>
+            <p class="text-white font-medium mt-8">Cara Pesan</p>
+            <p class="text-white font-medium mt-4">Syarat dan Ketentuan</p>
+            <p class="text-white font-medium mt-4">Kontak</p>
+          </div>
+  
+          <div class="mx-auto">
+            <h1 class="text-lg font-bold text-white">Pembayaran</h1>
+            <div class="grid grid-cols-3 gap-3 mt-8">
+              <div class="bg-white px-2 py-2 rounded-lg flex items-center justify-center">
+                <img class="h-8" src="./asset/bank/bni.png" alt="" />
+              </div>
+              <div class="px-2 py-2 rounded-lg bg-white flex items-center justify-center">
+                <img class="h-8" src="./asset/bank/bca 1.png" alt="" />
+              </div>
+              <div class="px-2 py-2 rounded-lg bg-white flex items-center justify-center">
+                <img class="h-8" src="./asset/bank/bri 1.png" alt="" />
+              </div>
+              <div class="px-2 py-2 rounded-lg bg-white">
+                <img src="./asset/bank/Mandiri_logo (1) 1.png" alt="" />
+              </div>
+  
+              <div class="px-2 py-2 rounded-lg bg-white">
+                <img src="./asset/bank/seabank 1.png" alt="" />
+              </div>
+              <div class="px-2 py-2 rounded-lg bg-white flex items-center justify-center">
+                <img src="./asset/bank/gopay-logo-new 1 (1).png" alt="" />
+              </div>
+  
+              <div class="px-2 py-1 rounded-lg bg-white">
+                <img class="w-20 mx-auto" src="./asset/bank/Logo-ShopeePay-768x403 1.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+  
+      <script src="https://kit.fontawesome.com/c4ce7ec2a0.js" crossorigin="anonymous"></script>
+    </body>
+  </html>
