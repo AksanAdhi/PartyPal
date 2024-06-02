@@ -1,3 +1,9 @@
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -60,6 +66,7 @@
 
     <div class="center-box">
       <!-- This is the white empty space in the middle of the page -->
+
       <?php
 include 'db.php';
 include 'templates.php';
@@ -147,6 +154,10 @@ if ($result === FALSE) {
 <?php
 include 'templates.php';
 ?>
+
+
+
+
 
     </div>
 
