@@ -28,11 +28,12 @@
             <button id="pilih" class="py-2 w-full rounded-2xl mt-2 mb-2 px-12 bg-white text-slate-500 text-lg font-semibold cursor-pointer">
               Pilih
             </button>
+            <input type="hidden" id="daftar_sebagai" name="daftar_sebagai" value="">
             <div id="opsi" class="hidden bg-white mt-1 absolute top-[11.5rem] text-slate-500 w-full max-w-sm">
-              <button class="py-2 w-full px-12 bg-white text-lg font-semibold border hover:bg-gradient-to-tr from-stone-50 to-pink-200" name="sewa">
+              <button class="py-2 w-full px-12 bg-white text-lg font-semibold border hover:bg-gradient-to-tr from-stone-50 to-pink-200" data-value="sewa">
                 Sewa
               </button>
-              <button class="py-2 w-full px-12 bg-white text-lg font-semibold border hover:bg-gradient-to-tr from-stone-50 to-pink-200" name="penyedia">
+              <button class="py-2 w-full px-12 bg-white text-lg font-semibold border hover:bg-gradient-to-tr from-stone-50 to-pink-200" data-value="penyedia">
                 Penyedia Barang
               </button>
             </div>
@@ -40,11 +41,14 @@
             <label class="text-lg font-semibold text-white">Email</label>
             <input class="w-full mt-2 mb-2 py-2 px-3 outline outline-pink-400 rounded-lg" type="email" placeholder="masukkan email" name="email" />
 
+            <label class="text-lg font-semibold text-white">Username</label>
+            <input class="w-full mt-2 mb-2 py-2 px-3 outline outline-pink-400 rounded-lg" type="text" placeholder="masukkan username" name="username" />
+
             <label class="text-lg font-semibold text-white">Password</label>
-            <input class="w-full py-2 px-3 rounded-lg outline outline-pink-400" type="password" placeholder="masukkan password" name="pass" />
+            <input class="w-full py-2 px-3 rounded-lg outline outline-pink-400" type="password" placeholder="masukkan password" name="password" />
 
             <label class="text-lg font-semibold text-white">Konfirmasi Password</label>
-            <input class="w-full py-2 px-3 rounded-lg outline outline-pink-400" type="password" placeholder="konfirmasi password" name="confirm_pass" />
+            <input class="w-full py-2 px-3 rounded-lg outline outline-pink-400" type="password" placeholder="konfirmasi password" name="confirm_password" />
 
             <div class="flex justify-center mt-5">
               <button class="text-white mt-4 px-12 py-2 text-2xl font-lg font-bold rounded-xl outline outline-4 outline-white" type="submit" name="submit">
@@ -135,6 +139,7 @@
   <script>
     const pilih = document.getElementById("pilih");
     const opsi = document.getElementById("opsi");
+    const daftarSebagai = document.getElementById("daftar_sebagai");
 
     pilih.addEventListener("click", function (event) {
       event.preventDefault();
@@ -145,6 +150,7 @@
       button.addEventListener("click", function (event) {
         event.preventDefault();
         pilih.textContent = this.textContent;
+        daftarSebagai.value = this.getAttribute('data-value');
         opsi.classList.add("hidden");
       });
     });

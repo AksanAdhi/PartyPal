@@ -1,20 +1,8 @@
 <?php
-// Konfigurasi database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "partypal";
-
-// Membuat koneksi ke database
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Memeriksa koneksi
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+session_start();
+include("koneksi.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Mengambil data dari form
     $daftar_sebagai = $_POST['daftar_sebagai'];
     $email = $_POST['email'];
     $username = $_POST['username'];
@@ -22,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirm_password = $_POST['confirm_password'];
 
     if ($password != $confirm_password) {
-        die("Password and Confirm Password do not match.");
+        die("Passwords do not match.");
     }
 
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
