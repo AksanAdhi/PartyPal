@@ -3,8 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Login</title>
     <link rel="stylesheet" href="./output.css" />
+    <style>
+      .admin-btn {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+      }
+    </style>
   </head>
   <body class="bg-primary">
     <section class="container mx-auto flex">
@@ -37,12 +48,6 @@
                   name="penyedia"
                 >
                   Penyedia Barang
-                </button>
-                <button
-                  class="py-2 w-full px-12 bg-white text-lg font-semibold border hover:bg-gradient-to-tr from-stone-50 to-pink-200"
-                  name="admin"
-                >
-                  Admin
                 </button>
               </div>
 
@@ -82,9 +87,9 @@
           <p
             class="text-white text-center mt-10 text-lg underline underline-offset-[12px]"
           >
-            Dont’t have an account? <span class="font-bold">Sign Up</span>
+            Don’t have an account? <span class="font-bold">Sign Up</span>
           </p>
-          <p class="text-center text-white font-bold text-lg mt-2">Pengguna</p>
+          <a href="loginadmin.html" class="admin-btn">Admin</a>
         </div>
       </div>
     </section>
