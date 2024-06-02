@@ -95,7 +95,7 @@ if ($result === FALSE) {
 ?>
 
 <div style="float: left; margin-top: 5px; margin-left: 30px;">
-    <a href="#" style="color: black; font-weight: bold; text-decoration: none;">Pengajuan Barang</a><br>
+    <a href="#" style="color: pink; font-weight: bold; text-decoration: none;">Pengajuan Barang</a><br>
     <a href="verifikasiadmin.php" style="color: black; font-weight: bold; text-decoration: none;">Verifikasi</a><br>
     <a href="login.html" style="color: black; font-weight: bold; text-decoration: none;">Log Out</a>
 </div>
