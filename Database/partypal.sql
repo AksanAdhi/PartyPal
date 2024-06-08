@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2024 at 09:40 AM
+-- Generation Time: Jun 08, 2024 at 10:48 AM
 -- Server version: 10.4.32-MariaDB-log
 -- PHP Version: 8.0.30
 
@@ -103,13 +103,10 @@ CREATE TABLE `rating` (
 
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `phone` varchar(20) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` enum('penyewa','penyedia') NOT NULL,
-  `is_verified` tinyint(1) DEFAULT 0,
-  `address` varchar(255) DEFAULT NULL
+  `role` enum('penyewa','penyedia') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
