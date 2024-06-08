@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
     $pass = $_POST['pass'];
     $role = $_POST['role'];
 
-
+    // Use prepared statements to prevent SQL injection
     $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? AND password = ? AND role = ?");
     $stmt->bind_param("sss", $email, $pass, $role);
     $stmt->execute();
@@ -18,16 +18,16 @@ if (isset($_POST['submit'])) {
         $_SESSION['user'] = $row;
 
         if ($role == 'penyewa') {
-            header("Location: home.html");
+            header("Location: penyewa_dashboard.php");
         } elseif ($role == 'penyedia') {
-            header("Location: index.html");
+            header("Location: penyedia_dashboard.php");
         } else {
             header("Location: login.php");
         }
     } else {
-        echo "<script>alert('Email or password incorrect');</script>";
-        header("Location: login.php");
+        header("Location: login.html?error=not_found");
     }
+
 
     $stmt->close();
     $conn->close();
