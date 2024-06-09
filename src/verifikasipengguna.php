@@ -9,6 +9,9 @@
         .bg-custom {
             background-color: #C72056;
         }
+        .footer-custom {
+            background-color: #C72056;
+        }
     </style>
 </head>
 <body class="bg-primary font-sans leading-normal tracking-normal">
@@ -83,6 +86,60 @@
         </main>
     </div>
 </div>
+
+<footer class="footer-custom py-8 pb-4">
+    <div class="grid grid-cols-3 container mx-auto">
+            <div>
+                <h1 class="text-white text-3xl font-bold">PartyPal</h1>
+                <p class="mt-5 text-white max-w-xs leading-10 font-light">Jl. Prof. Dr. Sumantri Brojonegoro No. 1 Bandar Lampung, Lampung, 35145.</p>
+                <div class="flex text-white items-center gap-x-3 mt-4">
+                    <img src="./asset/phone.svg" alt="" /> +6280099442214
+                </div>
+                <div class="flex text-white items-center gap-x-3 mt-4">
+                    <img src="./asset/mail.svg" alt="" /> partypal@gmail.com
+                </div>
+                <h3 class="mt-8 text-xl font-bold text-white">Follow Us</h3>
+                <div class="flex gap-x-3 mt-3">
+                    <i class="fa-brands fa-instagram text-3xl text-white"></i>
+                    <i class="fa-brands fa-facebook text-3xl text-white"></i>
+                    <i class="fa-brands fa-x-twitter text-3xl text-white"></i>
+                </div>
+            </div>
+            <div class="mx-auto">
+                <h1 class="text-lg font-bold text-white">Informasi</h1>
+                <p class="text-white font-medium mt-8">Cara Pesan</p>
+                <p class="text-white font-medium mt-4">Syarat dan Ketentuan</p>
+                <p class="text-white font-medium mt-4">Kontak</p>
+            </div>
+            <div class="mx-auto">
+                <h1 class="text-lg font-bold text-white">Pembayaran</h1>
+                <div class="grid grid-cols-3 gap-3 mt-8">
+                    <div class="bg-white px-2 py-2 rounded-lg flex items-center justify-center">
+                        <img class="h-8" src="./asset/bank/bni.png" alt="" />
+                    </div>
+                    <div class="px-2 py-2 rounded-lg bg-white flex items-center justify-center">
+                        <img class="h-8" src="./asset/bank/bca 1.png" alt="" />
+                    </div>
+                    <div class="px-2 py-2 rounded-lg bg-white flex items-center justify-center">
+                        <img class="h-8" src="./asset/bank/bri 1.png" alt="" />
+                    </div>
+                    <div class="px-2 py-2 rounded-lg bg-white">
+                        <img src="./asset/bank/Mandiri_logo (1) 1.png" alt="" />
+                    </div>
+                    <div class="px-2 py-2 rounded-lg bg-white">
+                        <img src="./asset/bank/seabank 1.png" alt="" />
+                    </div>
+                    <div class="px-2 py-2 rounded-lg bg-white flex items-center justify-center">
+                        <img src="./asset/bank/gopay-logo-new 1 (1).png" alt="" />
+                    </div>
+                    <div class="px-2 py-1 rounded-lg bg-white">
+                        <img class="w-20 mx-auto" src="./asset/bank/Logo-ShopeePay-768x403 1.png" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+</footer>
+
 
 <!-- Tailwind CSS -->
 <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
