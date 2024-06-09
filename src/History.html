@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PartyPal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-[#C72056]">
+        <nav class="flex items-center justify-between container mx-auto py-4">
+            <a class="flex items-center text-white gap-x-2 font-bold text-2xl" href="#">
+                <img class="w-16" src="./asset/logo pp 1.png" alt="PartyPal Logo" />
+                PartyPal
+            </a>
+            <div class="relative w-full max-w-sm">
+                <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none z-20 pl-3.5">
+                    <svg
+                        class="flex-shrink-0 w-5 h-5 text-gray-400"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
+                    </svg>
+                </div>
+                <input
+                    class="py-3 pl-10 pr-3 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50"
+                    type="text"
+                    placeholder="Type a product name"
+                    value=""
+                />
+            </div>
+            <div class="flex gap-x-5">
+                <a href="/keranjang.html" class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart w-10 h-10" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M17 17h-11v-14h-2" />
+                        <path d="M6 5l14 1l-1 7h-13" />
+                    </svg>
+                </a>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-user-square-rounded w-10 h-10"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="#fff"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M12 13a3 3 0 1 0 0 -6a3 3 0 0 0 0 6z" />
+                    <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+                    <path d="M6 20.05v-.05a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v.05" />
+                </svg>
+            </div>
+        </nav>
+    </header>
+
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto py-4">
+            <ul class="flex justify-center space-x-8">
+                <li><a href="home.html" class="text-[#C72056] font-bold">Home</a></li>
+                <li><a href="kursi.html" class="text-[#C72056] font-bold">Products</a></li>
+                <li><a href="History.html" class="text-[#C72056] font-bold">History</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container mx-auto py-16 text-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white shadow-lg rounded-lg p-8">
+                <img src="Vector (4).png" alt="Dalam Proses" class="mx-auto mb-4">
+                <h2 class="text-[#C72056] text-lg font-semibold">Dalam Proses</h2>
+            </div>
+            <div class="bg-white shadow-lg rounded-lg p-8">
+                <img src="Vector (5).png" alt="Selesai" class="mx-auto mb-4">
+                <h2 class="text-[#C72056] text-lg font-semibold">Selesai</h2>
+            </div>
+        </div>
+        <div class="mt-8">
+            <p class="text-[#C72056] text-lg font-semibold" img src="bag.png" >Daftar History kamu masih kosong?<br>Ayo mulai sewa produk untuk memeriahkan pestamu </p>
+        </div>
+    </main>
+
+    <footer class="bg-[#C72056] py-8">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+                <h1 class="text-white text-3xl font-bold">PartyPal</h1>
+                <p class="mt-5 text-white leading-7">Jl. Prof. Dr. Sumantri Brojonegoro No. 1 Bandar Lampung, Lampung, 35145.</p>
+                <div class="flex items-center gap-x-3 mt-4 text-white">
+                    <img src="./asset/phone.svg" alt="" class="w-5" /> +6280099442214
+                </div>
+                <div class="flex items-center gap-x-3 mt-4 text-white">
+                    <img src="./asset/mail.svg" alt="" class="w-5" /> partypal@gmail.com
+                </div>
+                <h3 class="mt-8 text-xl font-bold text-white">Follow Us</h3>
+                <div class="flex gap-x-3 mt-3">
+                    <i class="fa-brands fa-instagram text-3xl text-white"></i>
+                    <i class="fa-brands fa-facebook text-3xl text-white"></i>
+                    <i class="fa-brands fa-twitter text-3xl text-white"></i>
+                </div>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold text-white">Informasi</h1>
+                <ul class="mt-8 space-y-4 text-white">
+                    <li>Cara Pesan</li>
+                    <li>Syarat dan Ketentuan</li>
+                    <li>Kontak</li>
+                </ul>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold text-white">Pembayaran</h1>
+                <div class="grid grid-cols-3 gap-3 mt-8">
+                    <div class="bg-white p-2 rounded-lg flex items-center justify-center">
+                        <img class="h-8" src="./asset/bank/bni.png" alt="" />
+                    </div>
+                    <div class="bg-white p-2 rounded-lg flex items-center justify-center">
+                        <img class="h-8" src="./asset/bank/bca 1.png" alt="" />
+                    </div>
+                    <div class="bg-white p-2 rounded-lg flex items-center justify-center">
+                        <img class="h-8" src="./asset/bank/bri 1.png" alt="" />
+                    </div>
+                    <div class="bg-white p-2 rounded-lg flex items-center justify-center">
+                        <img src="./asset/bank/Mandiri_logo (1) 1.png" alt="" class="h-8" />
+                    </div>
+                    <div class="bg-white p-2 rounded-lg flex items-center justify-center">
+                        <img src="./asset/bank/seabank 1.png" alt="" class="h-8" />
+                    </div>
+                    <div class="bg-white p-2 rounded-lg flex items-center justify-center">
+                        <img src="./asset/bank/gopay-logo-new 1 (1).png" alt="" class="h-8" />
+                    </div>
+                    <div class="bg-white p-2 rounded-lg flex items-center justify-center">
+                        <img src="./asset/bank/Logo-ShopeePay-768x403 1.png" alt="" class="h-8 w-20" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://kit.fontawesome.com/c4ce7ec2a0.js" crossorigin="anonymous"></script>
+</body>
+</html>
