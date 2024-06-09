@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2024 at 10:48 AM
+-- Generation Time: Jun 09, 2024 at 09:59 AM
 -- Server version: 10.4.32-MariaDB-log
 -- PHP Version: 8.0.30
 
@@ -33,6 +33,15 @@ CREATE TABLE `admin` (
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `email`, `password`) VALUES
+(2, 'admin1@gmail.com', 'aaa'),
+(3, 'admin2@gmail.com', 'bbb'),
+(4, 'admin3@gmail.com', 'ccc');
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +58,14 @@ CREATE TABLE `items` (
   `is_verified` tinyint(1) DEFAULT 0,
   `address` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`item_id`, `name`, `image_url`, `store_name`, `price`, `provider_id`, `is_verified`, `address`) VALUES
+(1, 'Kursi kayu', '-', 'Partykuy', 20000.00, 1, 0, 'jl. kampung baru'),
+(2, 'Kursi besi', '-', 'PartyKuy', 25000.00, 1, 0, 'jl. kampung baru');
 
 -- --------------------------------------------------------
 
@@ -109,6 +126,14 @@ CREATE TABLE `users` (
   `role` enum('penyewa','penyedia') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `role`) VALUES
+(1, 'Aksan', 'Aksan@gmail.com', 'aaa', 'penyewa'),
+(3, 'Adhi', 'Adhi@gmail.com', 'aaa', 'penyedia');
+
 -- --------------------------------------------------------
 
 --
@@ -122,6 +147,14 @@ CREATE TABLE `user_verification` (
   `status` enum('pending','approved','rejected') NOT NULL DEFAULT 'pending',
   `admin_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_verification`
+--
+
+INSERT INTO `user_verification` (`verification_id`, `user_id`, `request_date`, `status`, `admin_id`) VALUES
+(1, 1, '2024-06-08 16:07:50', 'approved', 2),
+(2, 3, '2024-06-01 14:58:08', 'pending', 4);
 
 -- --------------------------------------------------------
 
@@ -141,6 +174,16 @@ CREATE TABLE `verification_request` (
   `status` enum('pending','approved','rejected') NOT NULL DEFAULT 'pending',
   `admin_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `verification_request`
+--
+
+INSERT INTO `verification_request` (`request_id`, `item_name`, `store_name`, `price`, `image_url`, `provider_id`, `address`, `request_date`, `status`, `admin_id`) VALUES
+(1, 'Kursi Kayu', 'Partykuy', 20000.00, '', 1, 'jl.kampungbaru', '2024-06-08 16:06:19', 'pending', 2),
+(3, 'Kursi besi', 'Partyyuk', 25000.00, '-', 1, 'jl. bumi manti 3', '2024-06-09 14:32:25', 'pending', 2),
+(4, 'meja kecil', 'Nikahyuk', 15000.00, 'meja.jpg', 3, 'jl. palala', '2024-06-01 14:38:03', 'pending', 3),
+(5, 'Piring/lusin', 'Partykuy', 20000.00, 'piring.jpg', 1, 'jl. kampung baru', '2024-06-09 14:42:13', 'pending', 4);
 
 --
 -- Indexes for dumped tables
@@ -216,13 +259,13 @@ ALTER TABLE `verification_request`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -246,19 +289,19 @@ ALTER TABLE `rating`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_verification`
 --
 ALTER TABLE `user_verification`
-  MODIFY `verification_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `verification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `verification_request`
 --
 ALTER TABLE `verification_request`
-  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

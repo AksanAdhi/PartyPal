@@ -21,11 +21,11 @@
             <span class="ml-2 text-2xl font-bold">Admin</span>
         </div>
         <nav class="mt-10">
-            <a href="#" class="flex items-center mt-4 py-2 px-8 bg-pink-800 text-white">
+            <a href="pengajuanbarang.php" class="flex items-center mt-4 py-2 px-8 bg-pink-800 text-white">
                 <span class="mx-4 font-bold">Pengajuan Barang</span>
             </a>
-            <a href="verifikasi.html" class="flex items-center mt-4 py-2 px-8 text-white hover:bg-pink-800">
-                <span class="mx-4 font-bold">Verifikasi</span>
+            <a href="verifikasipengguna.php" class="flex items-center mt-4 py-2 px-8 text-white hover:bg-pink-800">
+                <span class="mx-4 font-bold">Verifikasi Pengguna</span>
             </a>
             <a href="loginadmin.html" class="flex items-center mt-4 py-2 px-8 text-white hover:bg-pink-800">
                 <span class="mx-4 font-bold">Log Out</span>
@@ -50,23 +50,31 @@
                         </tr>
                     </thead>
                     <tbody class="text-gray-700">
-                        <!-- Example Row -->
-                        <tr>
-                            <td class="border-t-2 border-custom px-4 py-2">Kursi Artistik</td>
-                            <td class="border-t-2 border-custom px-4 py-2">Pure.jpg</td>
-                            <td class="border-t-2 border-custom px-4 py-2">20.000</td>
-                            <td class="border-t-2 border-custom px-4 py-2">
-                                <div class="flex items-center">
-                                    <button class="text-green-600 hover:text-green-800 mr-2 verify-btn" data-id="1" data-status="approve">
-                                        <i class="fas fa-check"></i>
-                                    </button>
-                                    <button class="text-red-600 hover:text-red-800 verify-btn" data-id="1" data-status="reject">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- Add more rows as needed -->
+                        <?php
+                        include 'koneksi.php';
+                        $sql = "SELECT * FROM verification_request";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td class='border-t-2 border-custom px-4 py-2'>" . $row['item_name'] . "</td>";
+                                echo "<td class='border-t-2 border-custom px-4 py-2'>" . $row['store_name'] . "</td>";
+                                echo "<td class='border-t-2 border-custom px-4 py-2'>" . $row['price'] . "</td>";
+                                echo "<td class='border-t-2 border-custom px-4 py-2'>
+                                      <select class='status-dropdown' data-id='" . $row['request_id'] . "'>
+                                          <option value='pending' " . ($row['status'] == 'pending' ? 'selected' : '') . ">Pending</option>
+                                          <option value='approved' " . ($row['status'] == 'approved' ? 'selected' : '') . ">Approved</option>
+                                          <option value='rejected' " . ($row['status'] == 'rejected' ? 'selected' : '') . ">Rejected</option>
+                                      </select>
+                                    </td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='4' class='border-t-2 border-custom px-4 py-2 text-center'>No pending requests</td></tr>";
+                        }
+                        $conn->close();
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -80,10 +88,10 @@
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <!-- AJAX script -->
 <script>
-    document.querySelectorAll('.verify-btn').forEach(button => {
-        button.addEventListener('click', function () {
+    document.querySelectorAll('.status-dropdown').forEach(dropdown => {
+        dropdown.addEventListener('change', function () {
             const itemId = this.getAttribute('data-id');
-            const status = this.getAttribute('data-status');
+            const status = this.value;
             fetch('verify.php', {
                 method: 'POST',
                 headers: {
@@ -96,9 +104,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                if (data.success) {
-                    location.reload(); // Reload the page to reflect changes
-                } else {
+                if (!data.success) {
                     alert('Failed to update status');
                 }
             })
