@@ -18,16 +18,15 @@ if (isset($_POST['submit'])) {
         $_SESSION['user'] = $row;
 
         if ($role == 'penyewa') {
-            header("Location: penyewa_dashboard.php");
+            header("Location: home.html");
         } elseif ($role == 'penyedia') {
-            header("Location: penyedia_dashboard.php");
+            header("Location: index.html");
         } else {
             header("Location: login.php");
         }
     } else {
         header("Location: login.html?error=not_found");
     }
-
 
     $stmt->close();
     $conn->close();
