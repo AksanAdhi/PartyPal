@@ -18,9 +18,9 @@ if (isset($_POST['submit'])) {
         $_SESSION['user'] = $row;
 
         if ($role == 'penyewa') {
-            header("Location: penyewa_dashboard.php");
+            header("Location: home.html");
         } elseif ($role == 'penyedia') {
-            header("Location: penyedia_dashboard.php");
+            header("Location: index.html");
         } else {
             header("Location: login.php");
         }
