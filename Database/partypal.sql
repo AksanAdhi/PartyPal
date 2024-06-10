@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2024 at 09:59 AM
+-- Generation Time: Jun 10, 2024 at 01:27 PM
 -- Server version: 10.4.32-MariaDB-log
 -- PHP Version: 8.0.30
 
@@ -33,15 +33,6 @@ CREATE TABLE `admin` (
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`admin_id`, `email`, `password`) VALUES
-(2, 'admin1@gmail.com', 'aaa'),
-(3, 'admin2@gmail.com', 'bbb'),
-(4, 'admin3@gmail.com', 'ccc');
-
 -- --------------------------------------------------------
 
 --
@@ -51,9 +42,11 @@ INSERT INTO `admin` (`admin_id`, `email`, `password`) VALUES
 CREATE TABLE `items` (
   `item_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `image_url` varchar(255) NOT NULL,
-  `store_name` varchar(100) NOT NULL,
   `price` decimal(10,2) NOT NULL,
+  `category` varchar(100) NOT NULL,
+  `stock` int(11) NOT NULL,
+  `description` text NOT NULL,
+  `image_url` varchar(255) NOT NULL,
   `provider_id` int(11) NOT NULL,
   `is_verified` tinyint(1) DEFAULT 0,
   `address` varchar(255) DEFAULT NULL
@@ -63,9 +56,11 @@ CREATE TABLE `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`item_id`, `name`, `image_url`, `store_name`, `price`, `provider_id`, `is_verified`, `address`) VALUES
-(1, 'Kursi kayu', '-', 'Partykuy', 20000.00, 1, 0, 'jl. kampung baru'),
-(2, 'Kursi besi', '-', 'PartyKuy', 25000.00, 1, 0, 'jl. kampung baru');
+INSERT INTO `items` (`item_id`, `name`, `price`, `category`, `stock`, `description`, `image_url`, `provider_id`, `is_verified`, `address`) VALUES
+(4, 'Kursi besi minimalis nyaman', 15000.00, '0', 100, 'a', 'image.jpg', 1, 0, 'Address'),
+(5, 'Kursi besi minimalis', 15000.00, '0', 100, 'aa', 'image.jpg', 1, 0, 'Address'),
+(6, 'Kursi kayu minimalis', 10000.00, '0', 100, 'aaa', 'image.jpg', 1, 0, 'Address'),
+(7, 'Meja kayu minimalis', 10000.00, '0', 100, 'meja', 'image.jpg', 1, 0, 'Address');
 
 -- --------------------------------------------------------
 
@@ -148,14 +143,6 @@ CREATE TABLE `user_verification` (
   `admin_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `user_verification`
---
-
-INSERT INTO `user_verification` (`verification_id`, `user_id`, `request_date`, `status`, `admin_id`) VALUES
-(1, 1, '2024-06-08 16:07:50', 'approved', 2),
-(2, 3, '2024-06-01 14:58:08', 'pending', 4);
-
 -- --------------------------------------------------------
 
 --
@@ -180,10 +167,10 @@ CREATE TABLE `verification_request` (
 --
 
 INSERT INTO `verification_request` (`request_id`, `item_name`, `store_name`, `price`, `image_url`, `provider_id`, `address`, `request_date`, `status`, `admin_id`) VALUES
-(1, 'Kursi Kayu', 'Partykuy', 20000.00, '', 1, 'jl.kampungbaru', '2024-06-08 16:06:19', 'pending', 2),
-(3, 'Kursi besi', 'Partyyuk', 25000.00, '-', 1, 'jl. bumi manti 3', '2024-06-09 14:32:25', 'pending', 2),
-(4, 'meja kecil', 'Nikahyuk', 15000.00, 'meja.jpg', 3, 'jl. palala', '2024-06-01 14:38:03', 'pending', 3),
-(5, 'Piring/lusin', 'Partykuy', 20000.00, 'piring.jpg', 1, 'jl. kampung baru', '2024-06-09 14:42:13', 'pending', 4);
+(4, 'Kursi besi minimalis nyaman', 'kuyRent', 15000.00, 'image.jpg', 1, '0', '2024-06-10 17:32:25', 'approved', NULL),
+(5, 'Kursi besi minimalis', 'kuyRent', 15000.00, 'image.jpg', 1, '0', '2024-06-10 17:35:00', 'rejected', NULL),
+(6, 'Kursi kayu minimalis', 'kuyRent', 10000.00, 'image.jpg', 1, '0', '2024-06-10 17:39:42', 'approved', NULL),
+(7, 'Meja kayu minimalis', 'kuyRent', 10000.00, 'image.jpg', 1, '0', '2024-06-10 17:41:49', 'approved', NULL);
 
 --
 -- Indexes for dumped tables
@@ -193,8 +180,7 @@ INSERT INTO `verification_request` (`request_id`, `item_name`, `store_name`, `pr
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
-  ADD PRIMARY KEY (`admin_id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD PRIMARY KEY (`admin_id`);
 
 --
 -- Indexes for table `items`
@@ -207,26 +193,19 @@ ALTER TABLE `items`
 -- Indexes for table `payment`
 --
 ALTER TABLE `payment`
-  ADD PRIMARY KEY (`payment_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `item_id` (`item_id`);
+  ADD PRIMARY KEY (`payment_id`);
 
 --
 -- Indexes for table `payment_history`
 --
 ALTER TABLE `payment_history`
-  ADD PRIMARY KEY (`history_id`),
-  ADD KEY `payment_id` (`payment_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `item_id` (`item_id`);
+  ADD PRIMARY KEY (`history_id`);
 
 --
 -- Indexes for table `rating`
 --
 ALTER TABLE `rating`
-  ADD PRIMARY KEY (`rating_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `item_id` (`item_id`);
+  ADD PRIMARY KEY (`rating_id`);
 
 --
 -- Indexes for table `users`
@@ -239,17 +218,13 @@ ALTER TABLE `users`
 -- Indexes for table `user_verification`
 --
 ALTER TABLE `user_verification`
-  ADD PRIMARY KEY (`verification_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `admin_id` (`admin_id`);
+  ADD PRIMARY KEY (`verification_id`);
 
 --
 -- Indexes for table `verification_request`
 --
 ALTER TABLE `verification_request`
-  ADD PRIMARY KEY (`request_id`),
-  ADD KEY `provider_id` (`provider_id`),
-  ADD KEY `admin_id` (`admin_id`);
+  ADD PRIMARY KEY (`request_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -259,13 +234,13 @@ ALTER TABLE `verification_request`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -295,13 +270,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_verification`
 --
 ALTER TABLE `user_verification`
-  MODIFY `verification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `verification_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `verification_request`
 --
 ALTER TABLE `verification_request`
-  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
@@ -312,42 +287,6 @@ ALTER TABLE `verification_request`
 --
 ALTER TABLE `items`
   ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`provider_id`) REFERENCES `users` (`user_id`);
-
---
--- Constraints for table `payment`
---
-ALTER TABLE `payment`
-  ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`);
-
---
--- Constraints for table `payment_history`
---
-ALTER TABLE `payment_history`
-  ADD CONSTRAINT `payment_history_ibfk_1` FOREIGN KEY (`payment_id`) REFERENCES `payment` (`payment_id`),
-  ADD CONSTRAINT `payment_history_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `payment_history_ibfk_3` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`);
-
---
--- Constraints for table `rating`
---
-ALTER TABLE `rating`
-  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`);
-
---
--- Constraints for table `user_verification`
---
-ALTER TABLE `user_verification`
-  ADD CONSTRAINT `user_verification_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `user_verification_ibfk_2` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`);
-
---
--- Constraints for table `verification_request`
---
-ALTER TABLE `verification_request`
-  ADD CONSTRAINT `verification_request_ibfk_1` FOREIGN KEY (`provider_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `verification_request_ibfk_2` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

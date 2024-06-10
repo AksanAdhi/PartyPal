@@ -2,12 +2,12 @@
 include 'koneksi.php';
 
 $input = json_decode(file_get_contents('php://input'), true);
-$request_id = $input['id'];
+$verification_id = $input['id'];
 $status = $input['status'];
 
 $sql = "UPDATE verification_request SET status = ? WHERE request_id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param('si', $status, $request_id);
+$stmt->bind_param('si', $status, $verification_id);
 
 if ($stmt->execute()) {
     echo json_encode(['success' => true]);

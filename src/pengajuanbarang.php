@@ -17,7 +17,6 @@
 <body class="bg-primary font-sans leading-normal tracking-normal">
 
 <div class="flex flex-col md:flex-row">
-    <!-- Sidebar -->
     <div class="flex flex-col w-full md:w-64 bg-custom text-white h-screen">
         <div class="flex items-center justify-center h-20 shadow-md">
             <img src="./asset/logo pp 1.png" alt="PartyPal Logo" class="h-12">
@@ -36,7 +35,6 @@
         </nav>
     </div>
 
-    <!-- Main Content -->
     <div class="flex flex-col flex-grow bg-white">
         <header class="flex items-center h-20 px-6 sm:px-10 bg-custom text-white">
         </header>
@@ -82,90 +80,38 @@
                 </table>
             </div>
         </main>
+        <footer class="footer-custom p-4 text-center text-white">
+            &copy; 2023 PartyPal. All rights reserved.
+        </footer>
     </div>
 </div>
 
-    <footer class="footer-custom py-8 pb-4">
-    <div class="grid grid-cols-3 container mx-auto">
-            <div>
-                <h1 class="text-white text-3xl font-bold">PartyPal</h1>
-                <p class="mt-5 text-white max-w-xs leading-10 font-light">Jl. Prof. Dr. Sumantri Brojonegoro No. 1 Bandar Lampung, Lampung, 35145.</p>
-                <div class="flex text-white items-center gap-x-3 mt-4">
-                    <img src="./asset/phone.svg" alt="" /> +6280099442214
-                </div>
-                <div class="flex text-white items-center gap-x-3 mt-4">
-                    <img src="./asset/mail.svg" alt="" /> partypal@gmail.com
-                </div>
-                <h3 class="mt-8 text-xl font-bold text-white">Follow Us</h3>
-                <div class="flex gap-x-3 mt-3">
-                    <i class="fa-brands fa-instagram text-3xl text-white"></i>
-                    <i class="fa-brands fa-facebook text-3xl text-white"></i>
-                    <i class="fa-brands fa-x-twitter text-3xl text-white"></i>
-                </div>
-            </div>
-            <div class="mx-auto">
-                <h1 class="text-lg font-bold text-white">Informasi</h1>
-                <p class="text-white font-medium mt-8">Cara Pesan</p>
-                <p class="text-white font-medium mt-4">Syarat dan Ketentuan</p>
-                <p class="text-white font-medium mt-4">Kontak</p>
-            </div>
-            <div class="mx-auto">
-                <h1 class="text-lg font-bold text-white">Pembayaran</h1>
-                <div class="grid grid-cols-3 gap-3 mt-8">
-                    <div class="bg-white px-2 py-2 rounded-lg flex items-center justify-center">
-                        <img class="h-8" src="./asset/bank/bni.png" alt="" />
-                    </div>
-                    <div class="px-2 py-2 rounded-lg bg-white flex items-center justify-center">
-                        <img class="h-8" src="./asset/bank/bca 1.png" alt="" />
-                    </div>
-                    <div class="px-2 py-2 rounded-lg bg-white flex items-center justify-center">
-                        <img class="h-8" src="./asset/bank/bri 1.png" alt="" />
-                    </div>
-                    <div class="px-2 py-2 rounded-lg bg-white">
-                        <img src="./asset/bank/Mandiri_logo (1) 1.png" alt="" />
-                    </div>
-                    <div class="px-2 py-2 rounded-lg bg-white">
-                        <img src="./asset/bank/seabank 1.png" alt="" />
-                    </div>
-                    <div class="px-2 py-2 rounded-lg bg-white flex items-center justify-center">
-                        <img src="./asset/bank/gopay-logo-new 1 (1).png" alt="" />
-                    </div>
-                    <div class="px-2 py-1 rounded-lg bg-white">
-                        <img class="w-20 mx-auto" src="./asset/bank/Logo-ShopeePay-768x403 1.png" alt="" />
-                    </div>
-                </div>
-            </div>
-        </div>
-</footer>
-
-
-<!-- Tailwind CSS -->
-<script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
-<!-- Font Awesome for icons -->
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-<!-- AJAX script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    document.querySelectorAll('.status-dropdown').forEach(dropdown => {
-        dropdown.addEventListener('change', function () {
-            const itemId = this.getAttribute('data-id');
-            const status = this.value;
-            fetch('verify.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
+    $(document).ready(function() {
+        $('.status-dropdown').change(function() {
+            var requestId = $(this).data('id');
+            var newStatus = $(this).val();
+            $.ajax({
+                url: 'verify.php',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    id: requestId,
+                    status: newStatus
+                }),
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    if (data.success) {
+                        alert('Status updated successfully.');
+                    } else {
+                        alert('Failed to update status.');
+                    }
                 },
-                body: JSON.stringify({
-                    id: itemId,
-                    status: status
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (!data.success) {
-                    alert('Failed to update status');
+                error: function() {
+                    alert('Error occurred while updating status.');
                 }
-            })
-            .catch(error => console.error('Error:', error));
+            });
         });
     });
 </script>
