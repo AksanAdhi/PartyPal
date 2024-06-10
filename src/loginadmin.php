@@ -14,7 +14,7 @@ if (isset($_POST['email']) && isset($_POST['pass'])) {
 
     if ($result->num_rows > 0) {
         $_SESSION['email'] = $email;
-        header('Location: pengajuanbarang.html');
+        header('Location: pengajuanbarang.php');
         exit();
     } else {
         header('Location: loginadmin.html?login=failed');

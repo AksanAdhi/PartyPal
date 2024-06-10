@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2024 at 07:31 AM
+-- Generation Time: Jun 09, 2024 at 09:59 AM
 -- Server version: 10.4.32-MariaDB-log
 -- PHP Version: 8.0.30
 
@@ -24,32 +24,92 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `admin_id` int(11) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `email`, `password`) VALUES
+(2, 'admin1@gmail.com', 'aaa'),
+(3, 'admin2@gmail.com', 'bbb'),
+(4, 'admin3@gmail.com', 'ccc');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `items`
 --
 
 CREATE TABLE `items` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `description` text DEFAULT NULL,
+  `image_url` varchar(255) NOT NULL,
+  `store_name` varchar(100) NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `available` tinyint(1) DEFAULT 1,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `provider_id` int(11) NOT NULL,
+  `is_verified` tinyint(1) DEFAULT 0,
+  `address` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`item_id`, `name`, `image_url`, `store_name`, `price`, `provider_id`, `is_verified`, `address`) VALUES
+(1, 'Kursi kayu', '-', 'Partykuy', 20000.00, 1, 0, 'jl. kampung baru'),
+(2, 'Kursi besi', '-', 'PartyKuy', 25000.00, 1, 0, 'jl. kampung baru');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `payment_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `payment_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `status` enum('pending','completed','failed') NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reviews`
+-- Table structure for table `payment_history`
 --
 
-CREATE TABLE `reviews` (
-  `id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL,
+CREATE TABLE `payment_history` (
+  `history_id` int(11) NOT NULL,
+  `payment_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `rating` int(11) DEFAULT NULL CHECK (`rating` >= 1 and `rating` <= 5),
+  `item_id` int(11) NOT NULL,
+  `viewed_by` enum('penyewa','penyedia') NOT NULL,
+  `view_date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rating`
+--
+
+CREATE TABLE `rating` (
+  `rating_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `rating` int(11) NOT NULL CHECK (`rating` between 1 and 5),
   `comment` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `rating_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -59,69 +119,189 @@ CREATE TABLE `reviews` (
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `daftar_sebagai` enum('Penyedia','Penyewa') NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `role` enum('penyewa','penyedia') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `daftar_sebagai`, `email`, `username`, `password`, `created_at`) VALUES
-(3, 'Penyedia', 'aa@gmail.com', 'aa', 'aa', '2024-05-30 05:10:19');
+INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `role`) VALUES
+(1, 'Aksan', 'Aksan@gmail.com', 'aaa', 'penyewa'),
+(3, 'Adhi', 'Adhi@gmail.com', 'aaa', 'penyedia');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_verification`
+--
+
+CREATE TABLE `user_verification` (
+  `verification_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `request_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `status` enum('pending','approved','rejected') NOT NULL DEFAULT 'pending',
+  `admin_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_verification`
+--
+
+INSERT INTO `user_verification` (`verification_id`, `user_id`, `request_date`, `status`, `admin_id`) VALUES
+(1, 1, '2024-06-08 16:07:50', 'approved', 2),
+(2, 3, '2024-06-01 14:58:08', 'pending', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `verification_request`
+--
+
+CREATE TABLE `verification_request` (
+  `request_id` int(11) NOT NULL,
+  `item_name` varchar(100) NOT NULL,
+  `store_name` varchar(100) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `image_url` varchar(255) NOT NULL,
+  `provider_id` int(11) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `request_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `status` enum('pending','approved','rejected') NOT NULL DEFAULT 'pending',
+  `admin_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `verification_request`
+--
+
+INSERT INTO `verification_request` (`request_id`, `item_name`, `store_name`, `price`, `image_url`, `provider_id`, `address`, `request_date`, `status`, `admin_id`) VALUES
+(1, 'Kursi Kayu', 'Partykuy', 20000.00, '', 1, 'jl.kampungbaru', '2024-06-08 16:06:19', 'pending', 2),
+(3, 'Kursi besi', 'Partyyuk', 25000.00, '-', 1, 'jl. bumi manti 3', '2024-06-09 14:32:25', 'pending', 2),
+(4, 'meja kecil', 'Nikahyuk', 15000.00, 'meja.jpg', 3, 'jl. palala', '2024-06-01 14:38:03', 'pending', 3),
+(5, 'Piring/lusin', 'Partykuy', 20000.00, 'piring.jpg', 1, 'jl. kampung baru', '2024-06-09 14:42:13', 'pending', 4);
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`admin_id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
 -- Indexes for table `items`
 --
 ALTER TABLE `items`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`item_id`),
+  ADD KEY `provider_id` (`provider_id`);
 
 --
--- Indexes for table `reviews`
+-- Indexes for table `payment`
 --
-ALTER TABLE `reviews`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `item_id` (`item_id`),
-  ADD KEY `user_id` (`user_id`);
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`payment_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `item_id` (`item_id`);
+
+--
+-- Indexes for table `payment_history`
+--
+ALTER TABLE `payment_history`
+  ADD PRIMARY KEY (`history_id`),
+  ADD KEY `payment_id` (`payment_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `item_id` (`item_id`);
+
+--
+-- Indexes for table `rating`
+--
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`rating_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `item_id` (`item_id`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `user_verification`
+--
+ALTER TABLE `user_verification`
+  ADD PRIMARY KEY (`verification_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `admin_id` (`admin_id`);
+
+--
+-- Indexes for table `verification_request`
+--
+ALTER TABLE `verification_request`
+  ADD PRIMARY KEY (`request_id`),
+  ADD KEY `provider_id` (`provider_id`),
+  ADD KEY `admin_id` (`admin_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `reviews`
+-- AUTO_INCREMENT for table `payment`
 --
-ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `payment`
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `payment_history`
+--
+ALTER TABLE `payment_history`
+  MODIFY `history_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `rating`
+--
+ALTER TABLE `rating`
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `user_verification`
+--
+ALTER TABLE `user_verification`
+  MODIFY `verification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `verification_request`
+--
+ALTER TABLE `verification_request`
+  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -131,14 +311,43 @@ ALTER TABLE `users`
 -- Constraints for table `items`
 --
 ALTER TABLE `items`
-  ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`provider_id`) REFERENCES `users` (`user_id`);
 
 --
--- Constraints for table `reviews`
+-- Constraints for table `payment`
 --
-ALTER TABLE `reviews`
-  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`),
-  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+ALTER TABLE `payment`
+  ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`);
+
+--
+-- Constraints for table `payment_history`
+--
+ALTER TABLE `payment_history`
+  ADD CONSTRAINT `payment_history_ibfk_1` FOREIGN KEY (`payment_id`) REFERENCES `payment` (`payment_id`),
+  ADD CONSTRAINT `payment_history_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `payment_history_ibfk_3` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`);
+
+--
+-- Constraints for table `rating`
+--
+ALTER TABLE `rating`
+  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`);
+
+--
+-- Constraints for table `user_verification`
+--
+ALTER TABLE `user_verification`
+  ADD CONSTRAINT `user_verification_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `user_verification_ibfk_2` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`);
+
+--
+-- Constraints for table `verification_request`
+--
+ALTER TABLE `verification_request`
+  ADD CONSTRAINT `verification_request_ibfk_1` FOREIGN KEY (`provider_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `verification_request_ibfk_2` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

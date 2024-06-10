@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PartyPal</title>
+    <title>PartyPal - Dalam Proses</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
     <header class="bg-[#C72056]">
         <nav class="flex items-center justify-between container mx-auto py-4">
-            <a class="flex items-center text-white gap-x-2 font-bold text-2xl" href="home.html">
+            <a class="flex items-center text-white gap-x-2 font-bold text-2xl" href="#">
                 <img class="w-16" src="./asset/logo pp 1.png" alt="PartyPal Logo" />
                 PartyPal
             </a>
@@ -66,35 +66,57 @@
             </div>
         </nav>
     </header>
-    <main class="container mx-auto py-8">
-        <div class="mb-6">
-            <div class="bg-white shadow-md rounded-lg p-4">
-                <div class="flex items-center">
-                    <img src="../src/image/Group.png" class="mr-2" />
-                    <h2 class="text-2xl font-bold text-[#C72056]">Syarat Dan Ketentuan</h2>
-                </div>
-                <ul class="list-disc pl-5 space-y-2">
-                    <li>Masa Sewa dalam satuan hari terhadap dalam hitungan jam adalah 24 jam.</li>
-                    <li>Produk yang disewakan adalah terhitung pemakaian, baik untuk kebutuhan Event Indoor maupun Outdoor.</li>
-                    <li>Barang yang disewa akan dikirim H-1 dan diambil kembali H+1 setelah masa sewa selesai.</li>
-                    <li>Jika barang yang disewa tidak kembali tepat waktu maka kami akan mengenakan biaya denda kepada penyewa.</li>
-                    <li>Harga sewa tidak mengikat apabila dalam prosesnya barang disewa dalam jumlah besar atau waktu lama.</li>
-                </ul>
-            </div>
+
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto py-4">
+            <ul class="flex justify-center space-x-8">
+                <li><a href="#" class="text-[#C72056] font-bold">Home</a></li>
+                <li><a href="#" class="text-[#C72056] font-bold">Products</a></li>
+                <li><a href="#" class="text-[#C72056] font-bold">History</a></li>
+            </ul>
         </div>
-        <div class="mb-6">         
-            <div class="bg-white shadow-md rounded-lg p-4">
-                <div class="flex items-center">
-                    <img src="../src/image/Group (1).png" class="mr-2" />
-                    <h2 class="text-2xl font-bold text-[#C72056]">Pembatalan</h2>
+    </nav>
+
+    <main class="w-full py-16 bg-white p-8 shadow-md">
+        <div class="container mx-auto">
+            <h2 class="text-[#C72056] text-3xl font-bold mb-8 text-left">Dalam Proses</h2>
+            <div class="bg-white shadow-lg rounded-lg p-4 mb-8">
+                <table class="min-w-full bg-white">
+                    <thead>
+                        <tr>
+                            <th class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-[#C72056] tracking-wider">Tanggal</th>
+                            <th class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-[#C72056] tracking-wider">Waktu</th>
+                            <th class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-[#C72056] tracking-wider">Barang</th>
+                            <th class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-[#C72056] tracking-wider">Pembayaran</th>
+                            <th class="px-6 py-3 border-b-2 border-gray-300 text-left leading-4 text-[#C72056] tracking-wider">Total Barang</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">16/04/2024</td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">7:00 PM - 9:00 PM</td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">Gelas & Piring</td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">Lunas</td>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">1 lusin</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="flex justify-between items-center mt-4">
+                    <a href="#" class="text-[#C72056] font-bold flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        BACK
+                    </a>
+                    <div class="flex items-center text-gray-500">
+                        <img src="Vector (6).png" alt="Logo" class="w-5 h-5 mr-1">
+                        <span>Grobogan, Central Java, Indonesia</span>
+                    </div>
                 </div>
-                <ul class="list-disc pl-5 space-y-2">
-                    <li>Pembatalan setelah waktu validasi pemesanan dikenakan biaya sebesar 50% dari harga sewa.</li>
-                    <li>Pembatalan yang dilakukan saat barang sudah sampai dikenakan biaya 100% dari harga sewa selama 1 hari.</li>
-                </ul>
             </div>
         </div>
     </main>
+
     <footer class="bg-[#C72056] py-8">
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
@@ -116,9 +138,9 @@
             <div>
                 <h1 class="text-lg font-bold text-white">Informasi</h1>
                 <ul class="mt-8 space-y-4 text-white">
-                    <p class="text-white font-medium mt-8"><a href="Panduan.html">Cara Pesan</a> </p>
-                    <p class="text-white font-medium mt-4"><a href="s&k.html">Syarat dan Ketentuan</a> </p>
-                    <p class="text-white font-medium mt-4"><a href="Kontak.html">Kontak</a> </p>
+                    <li>Cara Pesan</li>
+                    <li>Syarat dan Ketentuan</li>
+                    <li>Kontak</li>
                 </ul>
             </div>
             <div>
