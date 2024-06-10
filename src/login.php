@@ -28,7 +28,6 @@ if (isset($_POST['submit'])) {
         header("Location: login.html?error=not_found");
     }
 
-
     $stmt->close();
     $conn->close();
 }
