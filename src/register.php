@@ -37,8 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Commit transaction
         $conn->commit();
 
-        // Redirect to home page
-        header("Location: home.html");
+        // Redirect to login page
+        header("Location: login.html");
         exit();
     } catch (Exception $e) {
         // Rollback transaction
