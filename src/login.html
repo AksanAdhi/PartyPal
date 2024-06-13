@@ -130,9 +130,11 @@
             </div>
         </div>
     </footer>
-    <div class="popup" id="popup">
-        <span class="close-btn" id="close-btn">&times;</span>
-        <p>Akun tidak ditemukan</p>
+    <div class="popup fixed inset-0 flex items-center justify-center bg-red-500 bg-opacity-50" id="popup">
+        <div class="bg-white p-4 rounded shadow-lg relative">
+            <span class="close-btn cursor-pointer absolute top-2 right-2 text-xl font-bold" id="close-btn">&times;</span>
+            <p>Akun tidak ditemukan!</p>
+        </div>
     </div>
     <script>
         const pilih = document.getElementById("pilih");
@@ -167,6 +169,19 @@
         closeBtn.addEventListener('click', () => {
             popup.style.display = 'none';
         });
+
+if (urlParams.has('error')) {
+    const error = urlParams.get('error');
+    let errorMessage = 'Akun tidak ditemukan!';
+    
+    if (error === 'verification_pending') {
+        errorMessage = 'Akun Anda belum diverifikasi!';
+    }
+
+    popup.querySelector('p').textContent = errorMessage;
+    popup.style.display = 'block';
+}
+
     </script>
 </body>
 </html>

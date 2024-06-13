@@ -15,6 +15,32 @@
       color: white;
       text-decoration: none;
     }
+    .popup {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background-color: rgba(223, 79, 79, 0.704);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      border-radius: 20px;
+    }
+    .popup p {
+      color: white;
+      margin: 0;
+      font-size: 1.2em;
+    }
+    .close-btn {
+      color: white;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 1.2em;
+    }
+    
   </style>
 </head>
 <body class="bg-primary">
@@ -22,6 +48,10 @@
     <div class="w-1/2">
       <div class="max-w-sm mx-auto pt-24">
         <img class="mx-auto" src="./asset/logo pp 1.png" alt="PartyPal Logo" />
+        <div class="popup" id="popup">
+          <span class="close-btn" id="close-btn">&times;</span>
+          <p>Akun sudah terdaftar</p>
+        </div>
         <form class="mt-10 z-50" action="register.php" method="post">
           <div class="max-w-sm">
             <label class="text-lg font-semibold text-white">Daftar Sebagai</label>
@@ -137,6 +167,8 @@
     const pilih = document.getElementById("pilih");
     const opsi = document.getElementById("opsi");
     const daftarSebagai = document.getElementById("daftar_sebagai");
+    const popup = document.getElementById('popup');
+    const closeBtn = document.getElementById('close-btn');
 
     pilih.addEventListener("click", function (event) {
       event.preventDefault();
@@ -150,6 +182,16 @@
         daftarSebagai.value = this.getAttribute('data-value');
         opsi.classList.add("hidden");
       });
+    });
+
+    // Show popup if there is an error
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('error')) {
+      popup.style.display = 'block';
+    }
+
+    closeBtn.addEventListener('click', () => {
+      popup.style.display = 'none';
     });
   </script>
 </body>

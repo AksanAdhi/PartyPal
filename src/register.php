@@ -1,53 +1,38 @@
 <?php
 session_start();
-include("koneksi.php");
+include 'koneksi.php'; // Sesuaikan dengan konfigurasi database Anda
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $daftar_sebagai = $_POST['daftar_sebagai'];
     $email = $_POST['email'];
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $daftarSebagai = $_POST['daftar_sebagai'];
 
-    // Hash the password
-    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+    // Cek apakah email sudah terdaftar
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    // Begin transaction
-    $conn->begin_transaction();
-
-    try {
-        // Insert into users table
-        $stmt = $conn->prepare("INSERT INTO users (role, email, username, password) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $daftar_sebagai, $email, $username, $hashed_password);
-        
-        if (!$stmt->execute()) {
-            throw new Exception($stmt->error);
-        }
-
-        // Get the inserted user_id
-        $user_id = $stmt->insert_id;
-
-        // Insert into user_verification table
-        $stmt = $conn->prepare("INSERT INTO user_verification (user_id, request_date, status) VALUES (?, NOW(), 'pending')");
-        $stmt->bind_param("i", $user_id);
-        
-        if (!$stmt->execute()) {
-            throw new Exception($stmt->error);
-        }
-
-        // Commit transaction
-        $conn->commit();
-
-        // Redirect to login page
-        header("Location: login.html");
+    if ($result->num_rows > 0) {
+        // Email sudah terdaftar, arahkan kembali ke register.html dengan pesan kesalahan
+        $_SESSION['error_message'] = "Akun sudah terdaftar!";
+        header("Location: register.html?error=1");
         exit();
-    } catch (Exception $e) {
-        // Rollback transaction
-        $conn->rollback();
-        echo "Error: " . $e->getMessage();
+    } else {
+        // Lanjutkan dengan proses registrasi
+        $stmt = $conn->prepare("INSERT INTO users (email, username, password, role) VALUES (?, ?, ?, ?)");
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $stmt->bind_param("ssss", $email, $username, $hashed_password, $daftarSebagai);
+
+        if ($stmt->execute()) {
+            header("Location: success.html"); // Arahkan ke halaman sukses atau login
+            exit();
+        } else {
+            echo "Terjadi kesalahan: " . $stmt->error;
+        }
     }
-
     $stmt->close();
+    $conn->close();
 }
-
-$conn->close();
 ?>
