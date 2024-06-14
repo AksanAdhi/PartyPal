@@ -54,7 +54,7 @@
                     </thead>
                     <tbody class="text-gray-700">
                         <?php
-                        include 'koneksi.php';
+                        include 'koneksi.php'; // Ensure this file contains the proper database connection code
                         $sql = "SELECT uv.verification_id, uv.user_id, u.username, uv.request_date, uv.status 
                                 FROM user_verification uv
                                 JOIN users u ON uv.user_id = u.user_id";
@@ -63,11 +63,11 @@
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
                                 echo "<tr>";
-                                echo "<td class='border-t-2 border-custom px-4 py-2'>" . $row['user_id'] . "</td>";
-                                echo "<td class='border-t-2 border-custom px-4 py-2'>" . $row['username'] . "</td>";
-                                echo "<td class='border-t-2 border-custom px-4 py-2'>" . $row['request_date'] . "</td>";
+                                echo "<td class='border-t-2 border-custom px-4 py-2'>" . htmlspecialchars($row['user_id']) . "</td>";
+                                echo "<td class='border-t-2 border-custom px-4 py-2'>" . htmlspecialchars($row['username']) . "</td>";
+                                echo "<td class='border-t-2 border-custom px-4 py-2'>" . htmlspecialchars($row['request_date']) . "</td>";
                                 echo "<td class='border-t-2 border-custom px-4 py-2'>
-                                      <select class='status-dropdown' data-id='" . $row['verification_id'] . "'>
+                                      <select class='status-dropdown' data-id='" . htmlspecialchars($row['verification_id']) . "'>
                                           <option value='pending' " . ($row['status'] == 'pending' ? 'selected' : '') . ">Pending</option>
                                           <option value='approved' " . ($row['status'] == 'approved' ? 'selected' : '') . ">Approved</option>
                                           <option value='rejected' " . ($row['status'] == 'rejected' ? 'selected' : '') . ">Rejected</option>
@@ -88,15 +88,11 @@
 </div>
 
 <footer class="footer-custom p-4 text-center text-white">
-            &copy; 2023 PartyPal. All rights reserved.
-        </footer>
+    &copy; 2023 PartyPal. All rights reserved.
+</footer>
 
-
-<!-- Tailwind CSS -->
 <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
-<!-- Font Awesome for icons -->
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-<!-- AJAX script -->
 <script>
     document.querySelectorAll('.status-dropdown').forEach(dropdown => {
         dropdown.addEventListener('change', function () {
@@ -114,11 +110,16 @@
             })
             .then(response => response.json())
             .then(data => {
-                if (!data.success) {
+                if (data.success) {
+                    alert('Status updated successfully');
+                } else {
                     alert('Failed to update status');
                 }
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while updating the status');
+            });
         });
     });
 </script>

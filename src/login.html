@@ -163,25 +163,22 @@
         // Show popup if there is an error
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('error')) {
+            const error = urlParams.get('error');
+            let errorMessage = 'Akun tidak ditemukan!';
+            
+            if (error === 'verification_pending') {
+                errorMessage = 'Akun Anda belum diverifikasi!';
+            } else if (error === 'rejected') {
+                errorMessage = 'Akun tidak tersedia!';
+            }
+
+            popup.querySelector('p').textContent = errorMessage;
             popup.style.display = 'block';
         }
 
         closeBtn.addEventListener('click', () => {
             popup.style.display = 'none';
         });
-
-if (urlParams.has('error')) {
-    const error = urlParams.get('error');
-    let errorMessage = 'Akun tidak ditemukan!';
-    
-    if (error === 'verification_pending') {
-        errorMessage = 'Akun Anda belum diverifikasi!';
-    }
-
-    popup.querySelector('p').textContent = errorMessage;
-    popup.style.display = 'block';
-}
-
     </script>
 </body>
 </html>

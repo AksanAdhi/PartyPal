@@ -16,20 +16,20 @@ if (isset($_POST['submit'])) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         
-        // Check if the user is verified
-        $user_id = $row['user_id'];
-        $verification_stmt = $conn->prepare("SELECT status FROM user_verification WHERE user_id = ?");
-        $verification_stmt->bind_param("i", $user_id);
-        $verification_stmt->execute();
-        $verification_result = $verification_stmt->get_result();
+        // Verify the password
+        if (password_verify($pass, $row['password'])) {
+            // Check if the user is verified
+            $user_id = $row['user_id'];
+            $verification_stmt = $conn->prepare("SELECT status FROM user_verification WHERE user_id = ?");
+            $verification_stmt->bind_param("i", $user_id);
+            $verification_stmt->execute();
+            $verification_result = $verification_stmt->get_result();
 
-        if ($verification_result->num_rows > 0) {
-            $verification_row = $verification_result->fetch_assoc();
-            $verification_status = $verification_row['status'];
+            if ($verification_result->num_rows > 0) {
+                $verification_row = $verification_result->fetch_assoc();
+                $verification_status = $verification_row['status'];
 
-            if ($verification_status === 'approved') {
-                // Verify the password
-                if (password_verify($pass, $row['password'])) {
+                if ($verification_status === 'approved') {
                     $_SESSION['user'] = $row;
 
                     if ($role == 'penyewa') {
@@ -41,19 +41,19 @@ if (isset($_POST['submit'])) {
                     }
                     exit;
                 } else {
-                    header("Location: login.html?error=not_found");
+                    header("Location: login.html?error=verification_pending");
                     exit;
                 }
             } else {
-                header("Location: login.html?error=verification_pending");
+                header("Location: login.html?error=not_found");
                 exit;
             }
+
+            $verification_stmt->close();
         } else {
             header("Location: login.html?error=not_found");
             exit;
         }
-
-        $verification_stmt->close();
     } else {
         header("Location: login.html?error=not_found");
         exit;

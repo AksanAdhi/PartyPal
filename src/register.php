@@ -26,7 +26,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("ssss", $email, $username, $hashed_password, $daftarSebagai);
 
         if ($stmt->execute()) {
-            header("Location: success.html"); // Arahkan ke halaman sukses atau login
+            // Ambil user_id dari pengguna yang baru ditambahkan
+            $user_id = $stmt->insert_id;
+
+            // Tambahkan entri ke tabel user_verification
+            $stmt_verification = $conn->prepare("INSERT INTO user_verification (user_id) VALUES (?)");
+            $stmt_verification->bind_param("i", $user_id);
+            $stmt_verification->execute();
+            $stmt_verification->close();
+
+            header("Location: login.html"); // Arahkan ke halaman sukses atau login
             exit();
         } else {
             echo "Terjadi kesalahan: " . $stmt->error;
