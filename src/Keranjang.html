@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keranjang</title>
-    <link rel="stylesheet" href="keranjang.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <header class="bg-primary">
+<body class="bg-gray-100">
+    <header class="bg-[#c72056]">
         <nav class="flex items-center justify-between container mx-auto py-4">
           <a class="flex items-center text-white gap-x-2 font-bold text-2xl" href="#">
             <img class="w-16" src="./asset/logo pp 1.png" alt="" />
             PartyPal
           </a>
   
-          <div class="relative  w-full max-w-sm">
-            <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-3.5">
+          <div class="relative w-full max-w-sm">
+            <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none z-20 pl-3.5">
               <svg
-                class="flex-shrink-0 size-4 text-gray-400 dark:text-white/60"
+                class="flex-shrink-0 w-5 h-5 text-gray-400"
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
                 height="24"
@@ -33,19 +33,16 @@
               </svg>
             </div>
   
-            <div>
-              <input
-                class="py-3 ps-10 pe block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                type="text"
-                placeholder="Type a product name"
-                value=""
-                data-hs-combo-box-input=""
-              />
-            </div>
+            <input
+              class="py-3 pl-10 pr-3 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50"
+              type="text"
+              placeholder="Type a product name"
+              value=""
+            />
           </div>
   
           <div class="flex gap-x-5">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="40" height="40" viewBox="0 0 25 25" stroke-width="1.5" stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart w-10 h-10" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
               <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
@@ -55,10 +52,8 @@
   
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-user-square-rounded"
-              width="40"
-              height="40"
-              viewBox="0 0 25 25"
+              class="icon icon-tabler icon-tabler-user-square-rounded w-10 h-10"
+              viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="#fff"
               fill="none"
@@ -73,124 +68,119 @@
           </div>
         </nav>
       </header>
-      <div class="container">
-        <h2 class="title">Keranjang Saya</h2>
+      <div class="container mx-auto mt-8">
+        <h2 class="text-2xl font-bold mb-6">Keranjang Saya</h2>
         
-        <div class="cart-item">
-            <img src="../src/image/kursi putih.png" alt="Kursi Putih" class="item-image">
-            <div class="item-details">
-                <h3>Kursi Putih</h3>
-                <p>Minimal pemesanan 10 unit/hari</p>
-                <p>Rp 12.000/Hari</p>
+        <div class="bg-white shadow-md rounded-lg p-4 mb-6 flex items-center">
+            <img src="kursi putih.png" alt="Kursi Putih" class="w-24 h-24 object-cover rounded-md">
+            <div class="ml-4 flex-grow">
+                <h3 class="font-semibold">Kursi Putih</h3>
+                <p class="text-gray-500 text-sm">Minimal pemesanan 50 unit/hari</p>
+                <p class="text-red-600 font-bold">Rp 12.000/Hari</p>
             </div>
-            <div class="item-actions">
-                <input type="checkbox">
-                <div class="quantity">
-                    <button class="minus">-</button>
-                    <input type="text" value="1">
-                    <button class="plus">+</button>
+            <div class="flex items-center">
+                <input type="checkbox" class="mr-4">
+                <div class="flex items-center border rounded-lg">
+                    <button class="px-2 py-1 border-r">-</button>
+                    <input type="text" value="1" class="w-12 text-center">
+                    <button class="px-2 py-1 border-l">+</button>
                 </div>
             </div>
         </div>
         
-        <div class="cart-item">
-            <img src="../src/image/kursikayu.png" alt="Sofa Kayu" class="item-image">
-            <div class="item-details">
-                <h3>Sofa Kayu Ukuran 2 x 1 meter</h3>
-                <p>Minimal pemesanan 2 unit/hari</p>
-                <p>Rp 30.000/Hari</p>
+        <div class="bg-white shadow-md rounded-lg p-4 mb-6 flex items-center">
+            <img src="Kursi Kayu.png" alt="Sofa Kayu" class="w-24 h-24 object-cover rounded-md">
+            <div class="ml-4 flex-grow">
+                <h3 class="font-semibold">Sofa Kayu Ukuran 2 x 1 meter</h3>
+                <p class="text-gray-500 text-sm">Minimal pemesanan 2 unit/hari</p>
+                <p class="text-red-600 font-bold">Rp 30.000/Hari</p>
             </div>
-            <div class="item-actions">
-                <input type="checkbox">
-                <div class="quantity">
-                    <button class="minus">-</button>
-                    <input type="text" value="1">
-                    <button class="plus">+</button>
+            <div class="flex items-center">
+                <input type="checkbox" class="mr-4">
+                <div class="flex items-center border rounded-lg">
+                    <button class="px-2 py-1 border-r">-</button>
+                    <input type="text" value="1" class="w-12 text-center">
+                    <button class="px-2 py-1 border-l">+</button>
                 </div>
             </div>
         </div>
         
-        <div class="cart-item">
-            <img src="../src/image/piring.png" alt="Gelas & Piring" class="item-image">
-            <div class="item-details">
-                <h3>Gelas & Piring</h3>
-                <p>Minimal pemesanan 1 unit/hari</p>
-                <p>Rp 50.000/Hari</p>
+        <div class="bg-white shadow-md rounded-lg p-4 mb-6 flex items-center">
+            <img src="piring.png" alt="Gelas & Piring" class="w-24 h-24 object-cover rounded-md">
+            <div class="ml-4 flex-grow">
+                <h3 class="font-semibold">Gelas & Piring</h3>
+                <p class="text-gray-500 text-sm">Minimal pemesanan 1 lusin/hari</p>
+                <p class="text-red-600 font-bold">Rp 50.000/Hari</p>
             </div>
-            <div class="item-actions">
-                <input type="checkbox">
-                <div class="quantity">
-                    <button class="minus">-</button>
-                    <input type="text" value="1">
-                    <button class="plus">+</button>
+            <div class="flex items-center">
+                <input type="checkbox" class="mr-4">
+                <div class="flex items-center border rounded-lg">
+                    <button class="px-2 py-1 border-r">-</button>
+                    <input type="text" value="1" class="w-12 text-center">
+                    <button class="px-2 py-1 border-l">+</button>
                 </div>
             </div>
         </div>
 
-        <div class="cart-footer">
-            <div class="select-all">
-                <input type="checkbox">
+        <div class="bg-white shadow-md rounded-lg p-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <input type="checkbox" class="mr-2">
                 <label>Pilih Semua</label>
             </div>
-            <div class="total">
-                <span>Total</span>
-                <span>Rp 135.000</span>
-            </div>
-            <button class="checkout">Lanjutkan</button>
+            <div class="text-lg font-bold">Total: Rp 135.000</div>
+            <button class="bg-[#c72056] text-white px-6 py-2 rounded-lg">Lanjutkan</button>
         </div>
     </div>
     
-    <footer class="bg-primary py-8 pb-4">
-        <div class="grid grid-cols-3 container mx-auto">
+    <footer class="bg-[#c72056] py-8">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <h1 class="text-white text-3xl font-bold">PartyPal</h1>
-  
-            <p class="mt-5 text-white max-w-xs leading-10 font-light">Jl. Prof. Dr. Sumantri Brojonegoro No. 1 Bandar Lampung, Lampung, 35145.</p>
-  
-            <div class="flex text-white items-center gap-x-3 mt-4"><img src="./asset/phone.svg" alt="" /> +6280099442214</div>
-  
-            <div class="flex text-white items-center gap-x-3 mt-4"><img src="./asset/mail.svg" alt="" /> partypal@gmail.com</div>
-  
+            <p class="mt-5 text-white leading-7">Jl. Prof. Dr. Sumantri Brojonegoro No. 1 Bandar Lampung, Lampung, 35145.</p>
+            <div class="flex items-center gap-x-3 mt-4 text-white">
+              <img src="./asset/phone.svg" alt="" class="w-5" /> +6280099442214
+            </div>
+            <div class="flex items-center gap-x-3 mt-4 text-white">
+              <img src="./asset/mail.svg" alt="" class="w-5" /> partypal@gmail.com
+            </div>
             <h3 class="mt-8 text-xl font-bold text-white">Follow Us</h3>
             <div class="flex gap-x-3 mt-3">
               <i class="fa-brands fa-instagram text-3xl text-white"></i>
               <i class="fa-brands fa-facebook text-3xl text-white"></i>
-              <i class="fa-brands fa-x-twitter text-3xl text-white"></i>
+              <i class="fa-brands fa-twitter text-3xl text-white"></i>
             </div>
           </div>
-  
-          <div class="mx-auto">
+          <div>
             <h1 class="text-lg font-bold text-white">Informasi</h1>
-            <p class="text-white font-medium mt-8">Cara Pesan</p>
-            <p class="text-white font-medium mt-4">Syarat dan Ketentuan</p>
-            <p class="text-white font-medium mt-4">Kontak</p>
+            <ul class="mt-8 space-y-4 text-white">
+              <li>Cara Pesan</li>
+              <li>Syarat dan Ketentuan</li>
+              <li>Kontak</li>
+            </ul>
           </div>
-  
-          <div class="mx-auto">
+          <div>
             <h1 class="text-lg font-bold text-white">Pembayaran</h1>
             <div class="grid grid-cols-3 gap-3 mt-8">
-              <div class="bg-white px-2 py-2 rounded-lg flex items-center justify-center">
+              <div class="bg-white p-2 rounded-lg flex items-center justify-center">
                 <img class="h-8" src="./asset/bank/bni.png" alt="" />
               </div>
-              <div class="px-2 py-2 rounded-lg bg-white flex items-center justify-center">
+              <div class="bg-white p-2 rounded-lg flex items-center justify-center">
                 <img class="h-8" src="./asset/bank/bca 1.png" alt="" />
               </div>
-              <div class="px-2 py-2 rounded-lg bg-white flex items-center justify-center">
+              <div class="bg-white p-2 rounded-lg flex items-center justify-center">
                 <img class="h-8" src="./asset/bank/bri 1.png" alt="" />
               </div>
-              <div class="px-2 py-2 rounded-lg bg-white">
-                <img src="./asset/bank/Mandiri_logo (1) 1.png" alt="" />
+              <div class="bg-white p-2 rounded-lg flex items-center justify-center">
+                <img src="./asset/bank/Mandiri_logo (1) 1.png" alt="" class="h-8"/>
               </div>
-  
-              <div class="px-2 py-2 rounded-lg bg-white">
-                <img src="./asset/bank/seabank 1.png" alt="" />
+              <div class="bg-white p-2 rounded-lg flex items-center justify-center">
+                <img src="./asset/bank/seabank 1.png" alt="" class="h-8"/>
               </div>
-              <div class="px-2 py-2 rounded-lg bg-white flex items-center justify-center">
-                <img src="./asset/bank/gopay-logo-new 1 (1).png" alt="" />
+              <div class="bg-white p-2 rounded-lg flex items-center justify-center">
+                <img src="./asset/bank/gopay-logo-new 1 (1).png" alt="" class="h-8"/>
               </div>
-  
-              <div class="px-2 py-1 rounded-lg bg-white">
-                <img class="w-20 mx-auto" src="./asset/bank/Logo-ShopeePay-768x403 1.png" alt="" />
+              <div class="bg-white p-2 rounded-lg flex items-center justify-center">
+                <img src="./asset/bank/Logo-ShopeePay-768x403 1.png" alt="" class="h-8 w-20"/>
               </div>
             </div>
           </div>
@@ -198,7 +188,5 @@
       </footer>
   
       <script src="https://kit.fontawesome.com/c4ce7ec2a0.js" crossorigin="anonymous"></script>
-    
-
 </body>
 </html>
